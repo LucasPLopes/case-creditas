@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: service--simulacao
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000 # TTL do cache em milissegundos (60 segundos)
+  redis:
+    host: localhost
+    port: 6379
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/simulacao-db
+      database: simulacao-db
+
+server:
+  port: 8080
+  servlet:
+    context-path: /service--simulacao
+
+juros:
+  faixa-etaria:
+    - idadeMin: 0
+      idadeMax: 25
+      taxa: 0.05
+    - idadeMin: 26
+      idadeMax: 40
+      taxa: 0.03
+    - idadeMin: 41
+      idadeMax: 60
+      taxa: 0.02
+    - idadeMin: 61
+      idadeMax: 99
+      taxa: 0.04
+
+logbook:
+  format:
+    style: json
+  exclude:
+    - /actuator/**
+    - /health
+
+logging:
+  config: classpath:logback-spring.xml
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    br.com.creditas.service.simulacao.service: DEBUG
+    org.zalando.logbook.Logbook: TRACE
