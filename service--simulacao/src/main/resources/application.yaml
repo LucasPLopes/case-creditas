@@ -17,6 +17,24 @@ server:
   port: 8080
   servlet:
     context-path: /service--simulacao
+  tomcat:
+    threads:
+      max: 200           # Máximo de threads simultâneas
+      min-spare: 10      # Threads mínimas ociosas
+    accept-count: 100     # Fila de requisições pendentes
+    max-connections: 100 # Máximo de conexões TCP simultâneas 10000 default
+    max-http-post-size: 1MB # Tamanho máximo do corpo POST 2MB default
+  connection-timeout: 5s   # Tempo máximo de espera por requisição
+
+logging:
+  config: classpath:logback-spring.xml
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    br.com.creditas.service.simulacao.service: DEBUG
+    org.zalando.logbook.Logbook: TRACE
+
+# Configurações de negócio
 
 juros:
   faixa-etaria:
@@ -40,10 +58,3 @@ logbook:
     - /actuator/**
     - /health
 
-logging:
-  config: classpath:logback-spring.xml
-  pattern:
-    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
-  level:
-    br.com.creditas.service.simulacao.service: DEBUG
-    org.zalando.logbook.Logbook: TRACE

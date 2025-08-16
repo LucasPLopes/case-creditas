@@ -4,6 +4,8 @@ import br.com.creditas.service.simulacao.dto.SimulacaoRequest;
 import br.com.creditas.service.simulacao.dto.SimulacaoResponse;
 import br.com.creditas.service.simulacao.service.SimulacaoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +24,17 @@ public class SimulacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<SimulacaoResponse> simular(@RequestBody @Valid SimulacaoRequest request) {
+    public ResponseEntity<SimulacaoResponse> simular(@RequestBody
+                                                     @Valid SimulacaoRequest request) {
         return ResponseEntity.ok(service.simular(request));
     }
 
     @PostMapping("/lista")
-    public ResponseEntity<List<SimulacaoResponse>> simular(@RequestBody @Valid List<SimulacaoRequest> request) {
+    public ResponseEntity<List<SimulacaoResponse>> simular(@RequestBody
+                                                           @Valid
+                                                           @NotNull
+                                                           @NotEmpty(message = "Lista de simulações não pode ser vazia")
+                                                           List<SimulacaoRequest> request) {
         return ResponseEntity.ok(service.simular(request));
     }
 }
