@@ -36,8 +36,8 @@ public class ValidacaoExceptionHandler {
     public ResponseEntity<ProblemDetail> handleJsonParseError(HttpMessageNotReadableException ex) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle("Erro de leitura do corpo da requisição");
-        problemDetail.setDetail("O formato da data está inválido. Use o padrão yyyy-MM-dd.");
-        problemDetail.setProperty("timestamp", LocalDateTime.now());
+        problemDetail.setDetail(ex.getMessage());
+        problemDetail.setProperty("timestamp", LocalDateTime.now().toLocalTime());
 
         return ResponseEntity.badRequest().body(problemDetail);
     }

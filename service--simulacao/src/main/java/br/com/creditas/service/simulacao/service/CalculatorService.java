@@ -1,6 +1,6 @@
 package br.com.creditas.service.simulacao.service;
 
-import br.com.creditas.service.simulacao.dto.SimulacaoRequest;
+import br.com.creditas.service.simulacao.dto.SimulacaoSolicitacao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -35,15 +35,15 @@ public class CalculatorService {
         return taxaAnual.divide(BigDecimal.valueOf(12), SCALE_TAXA, ROUNDING);
     }
 
-    public static int calcularIdade(SimulacaoRequest request) {
+    public static int calcularIdade(SimulacaoSolicitacao request) {
         return Period.between(request.dataNascimento(), LocalDate.now()).getYears();
     }
 
-    public static BigDecimal calcularTotalJuros(SimulacaoRequest request, BigDecimal valorTotal) {
+    public static BigDecimal calcularTotalJuros(SimulacaoSolicitacao request, BigDecimal valorTotal) {
         return valorTotal.subtract(request.valor()).setScale(SCALE, ROUNDING);
     }
 
-    public static BigDecimal calcularValorTotal(SimulacaoRequest request, BigDecimal parcela) {
+    public static BigDecimal calcularValorTotal(SimulacaoSolicitacao request, BigDecimal parcela) {
         return parcela.multiply(BigDecimal.valueOf(request.prazoMeses())).setScale(SCALE, ROUNDING);
     }
 }

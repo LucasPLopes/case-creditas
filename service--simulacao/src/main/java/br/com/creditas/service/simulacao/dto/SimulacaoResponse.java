@@ -1,10 +1,9 @@
 package br.com.creditas.service.simulacao.dto;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public record SimulacaoResponse(
-        BigDecimal valorTotal,
-        BigDecimal parcelaMensal,
-        BigDecimal totalJuros,
-        BigDecimal taxaJurosAnual
-) {}
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        String id,
+        SimulacaoResultado resultado
+) { }

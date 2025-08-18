@@ -8,11 +8,13 @@ spring:
   redis:
     host: localhost
     port: 6379
+    timeout: 5000
   data:
     mongodb:
       uri: mongodb://localhost:27017/simulacao-db
       database: simulacao-db
-
+  kafka:
+    bootstrap-servers: localhost:9092
 server:
   port: 8080
   servlet:
@@ -34,6 +36,14 @@ logging:
     br.com.creditas.service.simulacao.service: DEBUG
     org.zalando.logbook.Logbook: TRACE
 
+logbook:
+  format:
+    style: json
+  exclude:
+    - /actuator/**
+    - /health
+
+
 # Configurações de negócio
 
 juros:
@@ -51,10 +61,16 @@ juros:
       idadeMax: 99
       taxa: 0.04
 
-logbook:
-  format:
-    style: json
-  exclude:
-    - /actuator/**
-    - /health
+bulk:
+  size: 100
+  kafka:
+    request: creditas.simulacao.request
+    response: creditas.simulacao.response
+  rabbitmq:
+    queue: creditas.simulacao
+    simulacao:
+      queue: creditas.simulacao
+      concurrency: 5
+  redis:
+    ttl: 600
 

@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @EnableMongoRepositories(basePackages = "br.com.creditas.service.simulacao.repository")
 @EntityScan(basePackages = "br.com.creditas.service.simulacao.model.mongodb")
-public class MongoConfiguration {
+public class MongoConfig {
 }

@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record SimulacaoRequest(
+public record SimulacaoSolicitacao(
         @NotNull(message = "O valor não pode ser nulo")
         @DecimalMin(value = "1.00", message = "O valor mínimo permitido é R$ 1,00")
         BigDecimal valor,
@@ -23,6 +23,7 @@ public record SimulacaoRequest(
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate dataNascimento,
         String modalidade,
-        boolean registrar
+        @NotNull(message = "Informar o campo 'registrar'")
+        Boolean registrar
 ) { }
 
