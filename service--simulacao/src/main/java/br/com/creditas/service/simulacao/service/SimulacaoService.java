@@ -8,6 +8,7 @@ import br.com.creditas.service.simulacao.model.mongodb.Simulacao;
 import br.com.creditas.service.simulacao.repository.SimulacaoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class SimulacaoService {
         this.simulacaoRepository = simulacaoRepository;
     }
 
+    @Transactional
     public SimulacaoResponse simular(SimulacaoSolicitacao request) {
         log.info("Simulacao iniciada");
         SimulacaoResultado resultado = calcularSimulacao(request);

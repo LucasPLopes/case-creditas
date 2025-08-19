@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -42,11 +43,12 @@ public class BulkSimulacaoService {
         this.simulacaoService = simulacaoService;
     }
 
+    @Transactional
     public void processarBulk(String canal, String correlationId, List<SimulacaoSolicitacao> requests) {
-        String chaveComposta = canal + "_" + correlationId;
+        var chaveComposta = canal + "_" + correlationId;
 
         // Registrar início no MongoDB
-        BulkProcess bulkProcess = new BulkProcess(
+        var bulkProcess = new BulkProcess(
                 chaveComposta,
                 canal,
                 correlationId,
@@ -94,19 +96,37 @@ public class BulkSimulacaoService {
     }
 
     private void enviarParaRabbit(String chaveComposta, List<SimulacaoSolicitacao> requests) {
-        for (int i = 0; i < requests.size(); i++) {
-            RabbitRequest request = new RabbitRequest(chaveComposta, i, requests.get(i));
+        int batchSize = bulkProperties.getBatchSize();
+        log.debug("Batch size {} para o chave {}", batchSize,chaveComposta );
+        int totalRequests = requests.size();
+        int batchCount = (int) Math.ceil((double) totalRequests / batchSize);
+
+        for (int batchIndex = 0; batchIndex < batchCount; batchIndex++) {
+            int fromIndex = batchIndex * batchSize;
+            int toIndex = Math.min(fromIndex + batchSize, totalRequests);
+
+            List<SimulacaoSolicitacao> batch = requests.subList(fromIndex, toIndex);
+            List<RabbitRequest> rabbitRequests = new ArrayList<>();
+
+            for (int i = 0; i < batch.size(); i++) {
+                int globalIndex = fromIndex + i;
+                rabbitRequests.add(new RabbitRequest(chaveComposta, globalIndex, batch.get(i)));
+            }
+
             rabbitTemplate.convertAndSend(
                     bulkProperties.getRabbitmq().getQueue(),
-                    request
+                    rabbitRequests
             );
+
+            log.debug("Enviado lote {} de {} para RabbitMQ. Itens: {}-{}",
+                    batchIndex + 1, batchCount, fromIndex, toIndex - 1);
         }
     }
 
     public void processarItem(String chaveComposta, int index, SimulacaoSolicitacao request) {
         try {
-            SimulacaoResponse simulacaoResponse = simulacaoService.simular(request);
-            armazenarResultado(chaveComposta, index, simulacaoResponse.resultado());
+            var simulacaoResponse = simulacaoService.simular(request);
+            armazenarResultado(chaveComposta, index, simulacaoResponse);
             verificarCompletude(chaveComposta);
         } catch (Exception e) {
             log.error("Erro no processamento de item: {}", chaveComposta, e);
@@ -115,7 +135,7 @@ public class BulkSimulacaoService {
         }
     }
 
-    public void armazenarResultado(String chaveComposta, int index, SimulacaoResultado response) {
+    public void armazenarResultado(String chaveComposta, int index, SimulacaoResponse response) {
         // Armazenar resultado individual
         redisTemplate.opsForHash().put(
                 "bulk:results:" + chaveComposta,
@@ -162,9 +182,9 @@ public class BulkSimulacaoService {
     }
 
     private void enviarRespostaKafka(String chaveComposta, List<BulkItemResult> resultados) {
-        List<SimulacaoResultado> responses = resultados.stream()
-                .filter(r -> r.response() != null)
+        var simulacoes = resultados.stream()
                 .map(BulkItemResult::response)
+                .filter(Objects::nonNull)
                 .toList();
 
         String[] partes = chaveComposta.split("_", 2);
@@ -174,13 +194,14 @@ public class BulkSimulacaoService {
         kafkaProducer.enviarResposta(new BulkSimulacaoResponse(
                 canal,
                 correlationId,
-                responses
+                simulacoes
         ));
     }
 
+    @Transactional
     private void atualizarStatusSucesso(String chaveComposta, List<BulkItemResult> resultados) {
         bulkProcessRepository.findById(chaveComposta).ifPresent(process -> {
-            List<SimulacaoResultado> responses = resultados.stream()
+            var responses = resultados.stream()
                     .map(BulkItemResult::response)
                     .filter(Objects::nonNull)
                     .toList();
@@ -203,6 +224,8 @@ public class BulkSimulacaoService {
         });
     }
 
+
+    @Transactional
     private void atualizarStatusFalha(String chaveComposta, String erro) {
         bulkProcessRepository.findById(chaveComposta).ifPresent(process -> {
             BulkProcess atualizado = new BulkProcess(

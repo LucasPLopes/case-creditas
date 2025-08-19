@@ -2,6 +2,6 @@ package br.com.creditas.service.simulacao.dto;
 
 
 public record BulkItemResult(
-        SimulacaoResultado response,
+        SimulacaoResponse response,
         String erro
 ) {}

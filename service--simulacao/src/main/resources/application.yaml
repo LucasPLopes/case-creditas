@@ -62,7 +62,7 @@ juros:
       taxa: 0.04
 
 bulk:
-  size: 100
+  batchSize: 10
   kafka:
     request: creditas.simulacao.request
     response: creditas.simulacao.response
@@ -70,7 +70,7 @@ bulk:
     queue: creditas.simulacao
     simulacao:
       queue: creditas.simulacao
-      concurrency: 5
+      concurrency: 10
   redis:
-    ttl: 600
+    ttl: 600 # segundos
 

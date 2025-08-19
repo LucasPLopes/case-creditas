@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "bulk")
 public class BulkProperties {
+    private Integer batchSize;
     private KafkaTopics kafka;
     private RabbitQueue rabbitmq;
     private Redis redis;

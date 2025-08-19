@@ -5,5 +5,5 @@ import java.util.List;
 public record BulkSimulacaoResponse(
         String canal,
         String correlationId,
-        List<SimulacaoResultado> responses
+        List<SimulacaoResponse> responses
 ) {}
