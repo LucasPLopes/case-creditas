@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: API de Simulação e Proposta
+  version: 1.0.0
+  description: APIs para simulação de financiamento e criação de propostas
+
+servers:
+  - url: http://localhost:8080
+    description: Serviço de Simulação
+  - url: http://localhost:8081
+    description: Serviço de Proposta
+
+paths:
+  /service--simulacao/v1/simulacoes:
+    post:
+      summary: Cria uma nova simulação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimulacaoRequest'
+      responses:
+        '200':
+          description: Simulação criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulacaoResponse'
+        '400':
+          description: Dados de entrada inválidos
+
+  /service--simulacao/internal/v1/simulacoes/bulk:
+    post:
+      summary: Cria múltiplas simulações em lote (interno)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkSimulacaoRequest'
+      responses:
+        '200':
+          description: Simulações em lote processadas
+        '400':
+          description: Dados de entrada inválidos
+
+  /service--simulacao/v1/simulacoes/{id}:
+    get:
+      summary: Busca uma simulação pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Simulação encontrada
+        '404':
+          description: Simulação não encontrada
+
+  /service--proposta/v1/proposta:
+    post:
+      summary: Cria uma proposta baseada em uma simulação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropostaRequest'
+      responses:
+        '200':
+          description: Proposta criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropostaResponse'
+        '400':
+          description: Dados de entrada inválidos
+
+components:
+  schemas:
+    SimulacaoRequest:
+      type: object
+      properties:
+        valor:
+          type: number
+          format: float
+          example: 10000.00
+        dataNascimento:
+          type: string
+          format: date
+          example: "1995-05-15"
+        prazoMeses:
+          type: integer
+          example: 120
+        registrar:
+          type: boolean
+          example: true
+        modalidade:
+          type: string
+          enum: [VARIAVEL, FIXA]
+          example: "VARIAVEL"
+
+    SimulacaoResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "68a439e6eb78fa8c509cbf6d"
+
+    BulkSimulacaoRequest:
+      type: object
+      properties:
+        canalOrigem:
+          type: string
+          example: "APP"
+        correlationId:
+          type: string
+          example: "UUID-4"
+        simulacoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimulacaoRequest'
+
+    PropostaRequest:
+      type: object
+      properties:
+        idSimulacao:
+          type: string
+          example: "68a439e6eb78fa8c509cbf6d"
+        cliente:
+          $ref: '#/components/schemas/Cliente'
+
+    Cliente:
+      type: object
+      properties:
+        cpf:
+          type: string
+          example: "12345678900"
+        nome:
+          type: string
+          example: "Fulano da Silva"
+
+    PropostaResponse:
+      type: object
+      properties:
+        numeroProposta:
+          type: string
+          example: "PROP20230001"

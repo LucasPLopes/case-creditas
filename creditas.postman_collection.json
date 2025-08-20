@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "89984d77-11b5-4867-8149-84a966affccc",
+		"name": "creditas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7314315"
+	},
+	"item": [
+		{
+			"name": "simulacao",
+			"item": [
+				{
+					"name": "simulacao",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica se a resposta é válida\r",
+									"if (pm.response.code === 200) {\r",
+									"    try {\r",
+									"        const responseData = pm.response.json();\r",
+									"        \r",
+									"        // Extrai o ID do corpo da resposta\r",
+									"        const requestId = responseData.id;\r",
+									"        \r",
+									"        if (requestId) {\r",
+									"            // Salva no environment com a chave 'simulacao_id'\r",
+									"            pm.environment.set(\"id\", requestId);\r",
+									"            \r",
+									"            // Exibe confirmação\r",
+									"            console.log(\"ID salvo com sucesso:\", requestId);\r",
+									"            pm.test(\"ID armazenado\", function () {\r",
+									"                pm.expect(pm.environment.get(\"id\")).to.equal(requestId);\r",
+									"            });\r",
+									"        } else {\r",
+									"            console.error(\"ID não encontrado na resposta\");\r",
+									"        }\r",
+									"    } catch (e) {\r",
+									"        console.error(\"Erro ao processar resposta:\", e.message);\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"Resposta inválida. Código:\", pm.response.code);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"valor\": 10000.00,\r\n  \"dataNascimento\": \"1995-05-15\",\r\n  \"prazoMeses\": 120,\r\n  \"registrar\": \"true\",\r\n  \"modalidade\": \"VARIAVEL\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/service--simulacao/v1/simulacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"service--simulacao",
+								"v1",
+								"simulacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interno bulk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"canalOrigem\": \"APP\",\r\n    \"correlationId\": \"{{$guid}}\",\r\n    \"simulacoes\": [\r\n        {\r\n            \"valor\": 7129.94,\r\n            \"prazoMeses\": 32,\r\n            \"dataNascimento\": \"1962-02-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 45209.84,\r\n            \"prazoMeses\": 69,\r\n            \"dataNascimento\": \"2014-11-03\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 49802.29,\r\n            \"prazoMeses\": 22,\r\n            \"dataNascimento\": \"1941-05-15\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n                {\r\n            \"valor\": 40023.81,\r\n            \"prazoMeses\": 12,\r\n            \"dataNascimento\": \"1981-06-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10865.71,\r\n            \"prazoMeses\": 118,\r\n            \"dataNascimento\": \"1966-05-17\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1523.36,\r\n            \"prazoMeses\": 21,\r\n            \"dataNascimento\": \"1943-03-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n                {\r\n            \"valor\": 40023.81,\r\n            \"prazoMeses\": 12,\r\n            \"dataNascimento\": \"1981-06-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10865.71,\r\n            \"prazoMeses\": 118,\r\n            \"dataNascimento\": \"1966-05-17\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1523.36,\r\n            \"prazoMeses\": 21,\r\n            \"dataNascimento\": \"1943-03-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n                {\r\n            \"valor\": 40023.81,\r\n            \"prazoMeses\": 12,\r\n            \"dataNascimento\": \"1981-06-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10865.71,\r\n            \"prazoMeses\": 118,\r\n            \"dataNascimento\": \"1966-05-17\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1523.36,\r\n            \"prazoMeses\": 21,\r\n            \"dataNascimento\": \"1943-03-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/service--simulacao/internal/v1/simulacoes/bulk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"service--simulacao",
+								"internal",
+								"v1",
+								"simulacoes",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "interno bulk 100",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"canalOrigem\": \"APP\",\r\n    \"correlationId\": \"UUID-4    \",\r\n    \"simulacoes\": [\r\n        {\r\n            \"valor\": 7129.94,\r\n            \"prazoMeses\": 32,\r\n            \"dataNascimento\": \"1962-02-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 45209.84,\r\n            \"prazoMeses\": 69,\r\n            \"dataNascimento\": \"2014-11-03\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 49802.29,\r\n            \"prazoMeses\": 22,\r\n            \"dataNascimento\": \"1941-05-15\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 13559.84,\r\n            \"prazoMeses\": 81,\r\n            \"dataNascimento\": \"2012-04-02\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 3057.56,\r\n            \"prazoMeses\": 81,\r\n            \"dataNascimento\": \"1940-11-28\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 28892.83,\r\n            \"prazoMeses\": 80,\r\n            \"dataNascimento\": \"1988-11-25\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10568.7,\r\n            \"prazoMeses\": 98,\r\n            \"dataNascimento\": \"1973-09-21\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 33897.61,\r\n            \"prazoMeses\": 99,\r\n            \"dataNascimento\": \"1971-03-23\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 33978.57,\r\n            \"prazoMeses\": 82,\r\n            \"dataNascimento\": \"1972-06-07\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 2093.02,\r\n            \"prazoMeses\": 93,\r\n            \"dataNascimento\": \"2007-08-19\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 15920.19,\r\n            \"prazoMeses\": 56,\r\n            \"dataNascimento\": \"1986-09-07\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 18552.26,\r\n            \"prazoMeses\": 35,\r\n            \"dataNascimento\": \"1941-06-22\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 2272.89,\r\n            \"prazoMeses\": 71,\r\n            \"dataNascimento\": \"1935-04-28\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 12030.84,\r\n            \"prazoMeses\": 85,\r\n            \"dataNascimento\": \"2010-08-01\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 15196.73,\r\n            \"prazoMeses\": 76,\r\n            \"dataNascimento\": \"1945-01-19\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 18093.64,\r\n            \"prazoMeses\": 62,\r\n            \"dataNascimento\": \"1942-01-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 25901.21,\r\n            \"prazoMeses\": 105,\r\n            \"dataNascimento\": \"1994-01-07\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 17757.87,\r\n            \"prazoMeses\": 26,\r\n            \"dataNascimento\": \"1945-06-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 39213.27,\r\n            \"prazoMeses\": 95,\r\n            \"dataNascimento\": \"2004-12-27\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 24099.4,\r\n            \"prazoMeses\": 25,\r\n            \"dataNascimento\": \"2010-10-05\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 27194.62,\r\n            \"prazoMeses\": 10,\r\n            \"dataNascimento\": \"1972-02-27\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 7411.1,\r\n            \"prazoMeses\": 98,\r\n            \"dataNascimento\": \"2013-06-02\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 38288.11,\r\n            \"prazoMeses\": 105,\r\n            \"dataNascimento\": \"1950-02-18\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 11880.72,\r\n            \"prazoMeses\": 8,\r\n            \"dataNascimento\": \"2007-10-14\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 9475.14,\r\n            \"prazoMeses\": 83,\r\n            \"dataNascimento\": \"2002-05-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 41771.73,\r\n            \"prazoMeses\": 92,\r\n            \"dataNascimento\": \"1977-09-02\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10061.33,\r\n            \"prazoMeses\": 92,\r\n            \"dataNascimento\": \"1938-12-17\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 22459.1,\r\n            \"prazoMeses\": 103,\r\n            \"dataNascimento\": \"1966-07-15\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 45737.82,\r\n            \"prazoMeses\": 9,\r\n            \"dataNascimento\": \"2014-01-26\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 3389.7,\r\n            \"prazoMeses\": 72,\r\n            \"dataNascimento\": \"1946-01-14\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 49960.79,\r\n            \"prazoMeses\": 11,\r\n            \"dataNascimento\": \"1992-10-26\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 4132.12,\r\n            \"prazoMeses\": 110,\r\n            \"dataNascimento\": \"1992-05-21\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 21772.52,\r\n            \"prazoMeses\": 36,\r\n            \"dataNascimento\": \"1976-05-26\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 23256.57,\r\n            \"prazoMeses\": 18,\r\n            \"dataNascimento\": \"1986-11-02\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 28435.65,\r\n            \"prazoMeses\": 98,\r\n            \"dataNascimento\": \"1993-09-22\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 21295.16,\r\n            \"prazoMeses\": 16,\r\n            \"dataNascimento\": \"2006-01-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 14967.23,\r\n            \"prazoMeses\": 31,\r\n            \"dataNascimento\": \"1940-08-23\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 21052.74,\r\n            \"prazoMeses\": 37,\r\n            \"dataNascimento\": \"1971-04-01\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10894.6,\r\n            \"prazoMeses\": 102,\r\n            \"dataNascimento\": \"1999-01-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 35815.37,\r\n            \"prazoMeses\": 46,\r\n            \"dataNascimento\": \"1975-02-28\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 41759.61,\r\n            \"prazoMeses\": 80,\r\n            \"dataNascimento\": \"1968-08-28\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 25131.63,\r\n            \"prazoMeses\": 86,\r\n            \"dataNascimento\": \"1971-03-11\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 40583.16,\r\n            \"prazoMeses\": 77,\r\n            \"dataNascimento\": \"1984-11-18\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 33889.07,\r\n            \"prazoMeses\": 78,\r\n            \"dataNascimento\": \"1971-07-11\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 15366.09,\r\n            \"prazoMeses\": 102,\r\n            \"dataNascimento\": \"1942-12-08\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 48371.81,\r\n            \"prazoMeses\": 81,\r\n            \"dataNascimento\": \"2013-11-16\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 31939.44,\r\n            \"prazoMeses\": 79,\r\n            \"dataNascimento\": \"2014-05-23\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 38341.52,\r\n            \"prazoMeses\": 90,\r\n            \"dataNascimento\": \"1995-12-08\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 41102.52,\r\n            \"prazoMeses\": 29,\r\n            \"dataNascimento\": \"1941-02-05\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 10102.82,\r\n            \"prazoMeses\": 64,\r\n            \"dataNascimento\": \"1974-08-13\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 14053.9,\r\n            \"prazoMeses\": 105,\r\n            \"dataNascimento\": \"1956-06-06\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 43015.77,\r\n            \"prazoMeses\": 97,\r\n            \"dataNascimento\": \"2000-05-08\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 49543.77,\r\n            \"prazoMeses\": 75,\r\n            \"dataNascimento\": \"2015-04-07\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10822.07,\r\n            \"prazoMeses\": 119,\r\n            \"dataNascimento\": \"1938-12-20\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 26067.1,\r\n            \"prazoMeses\": 114,\r\n            \"dataNascimento\": \"1988-02-26\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 23933.06,\r\n            \"prazoMeses\": 73,\r\n            \"dataNascimento\": \"1974-05-24\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 21254.47,\r\n            \"prazoMeses\": 62,\r\n            \"dataNascimento\": \"1939-10-16\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10709.46,\r\n            \"prazoMeses\": 116,\r\n            \"dataNascimento\": \"1952-08-16\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 20758.92,\r\n            \"prazoMeses\": 92,\r\n            \"dataNascimento\": \"1998-12-10\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 30051.12,\r\n            \"prazoMeses\": 62,\r\n            \"dataNascimento\": \"1945-08-27\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 43713.28,\r\n            \"prazoMeses\": 106,\r\n            \"dataNascimento\": \"1953-06-04\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 22967.56,\r\n            \"prazoMeses\": 44,\r\n            \"dataNascimento\": \"1951-07-24\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 36811.58,\r\n            \"prazoMeses\": 71,\r\n            \"dataNascimento\": \"1955-06-02\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 26770.29,\r\n            \"prazoMeses\": 44,\r\n            \"dataNascimento\": \"1958-07-10\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 42422.47,\r\n            \"prazoMeses\": 26,\r\n            \"dataNascimento\": \"1988-05-29\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 21655.67,\r\n            \"prazoMeses\": 108,\r\n            \"dataNascimento\": \"1936-10-22\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 28090.88,\r\n            \"prazoMeses\": 99,\r\n            \"dataNascimento\": \"2014-10-31\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 32067.89,\r\n            \"prazoMeses\": 9,\r\n            \"dataNascimento\": \"1941-05-17\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 26696.77,\r\n            \"prazoMeses\": 101,\r\n            \"dataNascimento\": \"2006-10-30\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 16972.76,\r\n            \"prazoMeses\": 30,\r\n            \"dataNascimento\": \"1948-02-04\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 33373.4,\r\n            \"prazoMeses\": 55,\r\n            \"dataNascimento\": \"2009-03-14\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 23997.43,\r\n            \"prazoMeses\": 43,\r\n            \"dataNascimento\": \"1978-03-02\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 7359.16,\r\n            \"prazoMeses\": 115,\r\n            \"dataNascimento\": \"1948-02-05\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 5262.82,\r\n            \"prazoMeses\": 109,\r\n            \"dataNascimento\": \"1987-07-06\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 20123.43,\r\n            \"prazoMeses\": 72,\r\n            \"dataNascimento\": \"1953-08-23\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 48987.47,\r\n            \"prazoMeses\": 42,\r\n            \"dataNascimento\": \"2002-02-26\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 13933.68,\r\n            \"prazoMeses\": 63,\r\n            \"dataNascimento\": \"1940-07-21\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 44764.48,\r\n            \"prazoMeses\": 34,\r\n            \"dataNascimento\": \"1971-10-06\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 49515.96,\r\n            \"prazoMeses\": 25,\r\n            \"dataNascimento\": \"1980-03-28\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 45410.53,\r\n            \"prazoMeses\": 54,\r\n            \"dataNascimento\": \"2008-03-15\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1261.27,\r\n            \"prazoMeses\": 94,\r\n            \"dataNascimento\": \"2010-08-30\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 5153.5,\r\n            \"prazoMeses\": 90,\r\n            \"dataNascimento\": \"1994-01-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1369.07,\r\n            \"prazoMeses\": 100,\r\n            \"dataNascimento\": \"1952-11-29\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 9631.55,\r\n            \"prazoMeses\": 46,\r\n            \"dataNascimento\": \"1978-04-09\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 4185.34,\r\n            \"prazoMeses\": 99,\r\n            \"dataNascimento\": \"1984-11-06\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 19711.28,\r\n            \"prazoMeses\": 106,\r\n            \"dataNascimento\": \"1952-05-30\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 15585.44,\r\n            \"prazoMeses\": 14,\r\n            \"dataNascimento\": \"1945-01-13\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 33254.83,\r\n            \"prazoMeses\": 16,\r\n            \"dataNascimento\": \"1973-02-24\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 31292.5,\r\n            \"prazoMeses\": 54,\r\n            \"dataNascimento\": \"1960-07-12\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 30165.39,\r\n            \"prazoMeses\": 102,\r\n            \"dataNascimento\": \"1975-08-25\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 3490.58,\r\n            \"prazoMeses\": 93,\r\n            \"dataNascimento\": \"1945-12-21\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 19416.41,\r\n            \"prazoMeses\": 54,\r\n            \"dataNascimento\": \"1935-08-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 4473.36,\r\n            \"prazoMeses\": 69,\r\n            \"dataNascimento\": \"1941-09-03\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 31757.78,\r\n            \"prazoMeses\": 57,\r\n            \"dataNascimento\": \"1956-03-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 23453.84,\r\n            \"prazoMeses\": 111,\r\n            \"dataNascimento\": \"1970-08-29\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 7974.51,\r\n            \"prazoMeses\": 108,\r\n            \"dataNascimento\": \"1966-04-27\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 44960.14,\r\n            \"prazoMeses\": 60,\r\n            \"dataNascimento\": \"1990-12-19\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 40023.81,\r\n            \"prazoMeses\": 12,\r\n            \"dataNascimento\": \"1981-06-12\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": false\r\n        },\r\n        {\r\n            \"valor\": 10865.71,\r\n            \"prazoMeses\": 118,\r\n            \"dataNascimento\": \"1966-05-17\",\r\n            \"modalidade\": \"FIXA\",\r\n            \"registrar\": true\r\n        },\r\n        {\r\n            \"valor\": 1523.36,\r\n            \"prazoMeses\": 21,\r\n            \"dataNascimento\": \"1943-03-15\",\r\n            \"modalidade\": \"VARIAVEL\",\r\n            \"registrar\": true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/service--simulacao/internal/v1/simulacoes/bulk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"service--simulacao",
+								"internal",
+								"v1",
+								"simulacoes",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/service--simulacao/v1/simulacoes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"service--simulacao",
+								"v1",
+								"simulacoes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proposta",
+			"item": [
+				{
+					"name": "proposta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica se a resposta é válida\r",
+									"if (pm.response.code === 200) {\r",
+									"    try {\r",
+									"        const responseData = pm.response.json();\r",
+									"        \r",
+									"        // Extrai o ID do corpo da resposta\r",
+									"        const requestId = responseData.numeroProposta;\r",
+									"        \r",
+									"        if (requestId) {\r",
+									"            // Salva no environment com a chave 'simulacao_id'\r",
+									"            pm.environment.set(\"numeroProposta\", requestId);\r",
+									"            \r",
+									"            // Exibe confirmação\r",
+									"            console.log(\"ID salvo com sucesso:\", requestId);\r",
+									"            pm.test(\"ID armazenado\", function () {\r",
+									"                pm.expect(pm.environment.get(\"numeroProposta\")).to.equal(requestId);\r",
+									"            });\r",
+									"        } else {\r",
+									"            console.error(\"ID não encontrado na resposta\");\r",
+									"        }\r",
+									"    } catch (e) {\r",
+									"        console.error(\"Erro ao processar resposta:\", e.message);\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"Resposta inválida. Código:\", pm.response.code);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idSimulacao\": \"68a439e6eb78fa8c509cbf6d\",\r\n  \"cliente\":{\r\n    \"cpf\": \"12345678900\",\r\n    \"nome\": \"Fulano da Silva\"\r\n  }\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/service--proposta/v1/proposta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"service--proposta",
+								"v1",
+								"proposta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

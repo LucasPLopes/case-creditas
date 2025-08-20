@@ -1,4 +1,5 @@
-package br.com.creditas.service.simulacao.validation;
+package br.com.creditas.service.proposta.validation;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -47,6 +48,32 @@ public class ValidacaoExceptionHandler {
     public ResponseEntity<ProblemDetail> handleJsonParseError(UnsupportedOperationException ex) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle("Operacao não permitida");
+        problemDetail.setDetail(ex.getMessage());
+        problemDetail.setProperty("timestamp", getLocalTime());
+
+        return ResponseEntity.badRequest().body(problemDetail);
+    }
+
+    @ExceptionHandler(NegocioException.class)
+    public ResponseEntity<ProblemDetail> handleException(NegocioException ex) {
+
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        if (ex.getHttpStatus() != null) {
+            httpStatus = ex.getHttpStatus();
+        }
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(httpStatus);
+        problemDetail.setTitle("Erro de negócio");
+        problemDetail.setDetail(ex.getMessage());
+        problemDetail.setProperty("timestamp", getLocalTime());
+
+        return ResponseEntity.status(httpStatus).body(problemDetail);
+    }
+
+    @ExceptionHandler(ErrorInternoException.class)
+    public ResponseEntity<ProblemDetail> handleException(ErrorInternoException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        problemDetail.setTitle("Erro interno");
         problemDetail.setDetail(ex.getMessage());
         problemDetail.setProperty("timestamp", getLocalTime());
 

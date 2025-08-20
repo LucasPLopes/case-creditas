@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="SimulacaoCarga">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+        <intProp name="ThreadGroup.num_threads">100</intProp>
+        <intProp name="ThreadGroup.ramp_time">20</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">100</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">C:/dev/tools/apache-jmeter-5.6.3/bin/simulacao.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">valor,dataNascimento,prazoMeses</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST simulacao" enabled="false">
+          <stringProp name="TestPlan.comments">Created from cURL on 2025-08-14T03:11:00.4696516</stringProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/service--simulacao/v1/simulacoes</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;valor&quot;: ${valor},&#xd;
+  &quot;dataNascimento&quot;: &quot;${ano}-12-15&quot;,&#xd;
+  &quot;prazoMeses&quot;: ${prazo},&#xd;
+  &quot;registrar&quot;: true&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2025-08-14T03:11:00.4716524</stringProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST Interno 100 simulacoes Kafka">
+          <stringProp name="TestPlan.comments">Created from cURL on 2025-08-19T04:45:01.6208865</stringProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/service--simulacao/internal/v1/simulacoes/bulk</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{     &quot;canalOrigem&quot;: &quot;APP-${canal}&quot;,     &quot;correlationId&quot;: &quot;UUID-${canal}&quot;,     &quot;simulacoes&quot;: [         {             &quot;valor&quot;: 7129.94,             &quot;prazoMeses&quot;: 32,             &quot;dataNascimento&quot;: &quot;1962-02-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 45209.84,             &quot;prazoMeses&quot;: 69,             &quot;dataNascimento&quot;: &quot;2014-11-03&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 49802.29,             &quot;prazoMeses&quot;: 22,             &quot;dataNascimento&quot;: &quot;1941-05-15&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 13559.84,             &quot;prazoMeses&quot;: 81,             &quot;dataNascimento&quot;: &quot;2012-04-02&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 3057.56,             &quot;prazoMeses&quot;: 81,             &quot;dataNascimento&quot;: &quot;1940-11-28&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 28892.83,             &quot;prazoMeses&quot;: 80,             &quot;dataNascimento&quot;: &quot;1988-11-25&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10568.7,             &quot;prazoMeses&quot;: 98,             &quot;dataNascimento&quot;: &quot;1973-09-21&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 33897.61,             &quot;prazoMeses&quot;: 99,             &quot;dataNascimento&quot;: &quot;1971-03-23&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 33978.57,             &quot;prazoMeses&quot;: 82,             &quot;dataNascimento&quot;: &quot;1972-06-07&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 2093.02,             &quot;prazoMeses&quot;: 93,             &quot;dataNascimento&quot;: &quot;2007-08-19&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 15920.19,             &quot;prazoMeses&quot;: 56,             &quot;dataNascimento&quot;: &quot;1986-09-07&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 18552.26,             &quot;prazoMeses&quot;: 35,             &quot;dataNascimento&quot;: &quot;1941-06-22&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 2272.89,             &quot;prazoMeses&quot;: 71,             &quot;dataNascimento&quot;: &quot;1935-04-28&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 12030.84,             &quot;prazoMeses&quot;: 85,             &quot;dataNascimento&quot;: &quot;2010-08-01&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 15196.73,             &quot;prazoMeses&quot;: 76,             &quot;dataNascimento&quot;: &quot;1945-01-19&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 18093.64,             &quot;prazoMeses&quot;: 62,             &quot;dataNascimento&quot;: &quot;1942-01-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 25901.21,             &quot;prazoMeses&quot;: 105,             &quot;dataNascimento&quot;: &quot;1994-01-07&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 17757.87,             &quot;prazoMeses&quot;: 26,             &quot;dataNascimento&quot;: &quot;1945-06-12&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 39213.27,             &quot;prazoMeses&quot;: 95,             &quot;dataNascimento&quot;: &quot;2004-12-27&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 24099.4,             &quot;prazoMeses&quot;: 25,             &quot;dataNascimento&quot;: &quot;2010-10-05&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 27194.62,             &quot;prazoMeses&quot;: 10,             &quot;dataNascimento&quot;: &quot;1972-02-27&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 7411.1,             &quot;prazoMeses&quot;: 98,             &quot;dataNascimento&quot;: &quot;2013-06-02&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 38288.11,             &quot;prazoMeses&quot;: 105,             &quot;dataNascimento&quot;: &quot;1950-02-18&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 11880.72,             &quot;prazoMeses&quot;: 8,             &quot;dataNascimento&quot;: &quot;2007-10-14&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 9475.14,             &quot;prazoMeses&quot;: 83,             &quot;dataNascimento&quot;: &quot;2002-05-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 41771.73,             &quot;prazoMeses&quot;: 92,             &quot;dataNascimento&quot;: &quot;1977-09-02&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10061.33,             &quot;prazoMeses&quot;: 92,             &quot;dataNascimento&quot;: &quot;1938-12-17&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 22459.1,             &quot;prazoMeses&quot;: 103,             &quot;dataNascimento&quot;: &quot;1966-07-15&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 45737.82,             &quot;prazoMeses&quot;: 9,             &quot;dataNascimento&quot;: &quot;2014-01-26&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 3389.7,             &quot;prazoMeses&quot;: 72,             &quot;dataNascimento&quot;: &quot;1946-01-14&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 49960.79,             &quot;prazoMeses&quot;: 11,             &quot;dataNascimento&quot;: &quot;1992-10-26&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 4132.12,             &quot;prazoMeses&quot;: 110,             &quot;dataNascimento&quot;: &quot;1992-05-21&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 21772.52,             &quot;prazoMeses&quot;: 36,             &quot;dataNascimento&quot;: &quot;1976-05-26&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 23256.57,             &quot;prazoMeses&quot;: 18,             &quot;dataNascimento&quot;: &quot;1986-11-02&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 28435.65,             &quot;prazoMeses&quot;: 98,             &quot;dataNascimento&quot;: &quot;1993-09-22&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 21295.16,             &quot;prazoMeses&quot;: 16,             &quot;dataNascimento&quot;: &quot;2006-01-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 14967.23,             &quot;prazoMeses&quot;: 31,             &quot;dataNascimento&quot;: &quot;1940-08-23&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 21052.74,             &quot;prazoMeses&quot;: 37,             &quot;dataNascimento&quot;: &quot;1971-04-01&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10894.6,             &quot;prazoMeses&quot;: 102,             &quot;dataNascimento&quot;: &quot;1999-01-15&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 35815.37,             &quot;prazoMeses&quot;: 46,             &quot;dataNascimento&quot;: &quot;1975-02-28&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 41759.61,             &quot;prazoMeses&quot;: 80,             &quot;dataNascimento&quot;: &quot;1968-08-28&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 25131.63,             &quot;prazoMeses&quot;: 86,             &quot;dataNascimento&quot;: &quot;1971-03-11&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 40583.16,             &quot;prazoMeses&quot;: 77,             &quot;dataNascimento&quot;: &quot;1984-11-18&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 33889.07,             &quot;prazoMeses&quot;: 78,             &quot;dataNascimento&quot;: &quot;1971-07-11&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 15366.09,             &quot;prazoMeses&quot;: 102,             &quot;dataNascimento&quot;: &quot;1942-12-08&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 48371.81,             &quot;prazoMeses&quot;: 81,             &quot;dataNascimento&quot;: &quot;2013-11-16&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 31939.44,             &quot;prazoMeses&quot;: 79,             &quot;dataNascimento&quot;: &quot;2014-05-23&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 38341.52,             &quot;prazoMeses&quot;: 90,             &quot;dataNascimento&quot;: &quot;1995-12-08&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 41102.52,             &quot;prazoMeses&quot;: 29,             &quot;dataNascimento&quot;: &quot;1941-02-05&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 10102.82,             &quot;prazoMeses&quot;: 64,             &quot;dataNascimento&quot;: &quot;1974-08-13&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 14053.9,             &quot;prazoMeses&quot;: 105,             &quot;dataNascimento&quot;: &quot;1956-06-06&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 43015.77,             &quot;prazoMeses&quot;: 97,             &quot;dataNascimento&quot;: &quot;2000-05-08&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 49543.77,             &quot;prazoMeses&quot;: 75,             &quot;dataNascimento&quot;: &quot;2015-04-07&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10822.07,             &quot;prazoMeses&quot;: 119,             &quot;dataNascimento&quot;: &quot;1938-12-20&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 26067.1,             &quot;prazoMeses&quot;: 114,             &quot;dataNascimento&quot;: &quot;1988-02-26&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 23933.06,             &quot;prazoMeses&quot;: 73,             &quot;dataNascimento&quot;: &quot;1974-05-24&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 21254.47,             &quot;prazoMeses&quot;: 62,             &quot;dataNascimento&quot;: &quot;1939-10-16&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10709.46,             &quot;prazoMeses&quot;: 116,             &quot;dataNascimento&quot;: &quot;1952-08-16&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 20758.92,             &quot;prazoMeses&quot;: 92,             &quot;dataNascimento&quot;: &quot;1998-12-10&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 30051.12,             &quot;prazoMeses&quot;: 62,             &quot;dataNascimento&quot;: &quot;1945-08-27&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 43713.28,             &quot;prazoMeses&quot;: 106,             &quot;dataNascimento&quot;: &quot;1953-06-04&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 22967.56,             &quot;prazoMeses&quot;: 44,             &quot;dataNascimento&quot;: &quot;1951-07-24&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 36811.58,             &quot;prazoMeses&quot;: 71,             &quot;dataNascimento&quot;: &quot;1955-06-02&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 26770.29,             &quot;prazoMeses&quot;: 44,             &quot;dataNascimento&quot;: &quot;1958-07-10&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 42422.47,             &quot;prazoMeses&quot;: 26,             &quot;dataNascimento&quot;: &quot;1988-05-29&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 21655.67,             &quot;prazoMeses&quot;: 108,             &quot;dataNascimento&quot;: &quot;1936-10-22&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 28090.88,             &quot;prazoMeses&quot;: 99,             &quot;dataNascimento&quot;: &quot;2014-10-31&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 32067.89,             &quot;prazoMeses&quot;: 9,             &quot;dataNascimento&quot;: &quot;1941-05-17&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 26696.77,             &quot;prazoMeses&quot;: 101,             &quot;dataNascimento&quot;: &quot;2006-10-30&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 16972.76,             &quot;prazoMeses&quot;: 30,             &quot;dataNascimento&quot;: &quot;1948-02-04&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 33373.4,             &quot;prazoMeses&quot;: 55,             &quot;dataNascimento&quot;: &quot;2009-03-14&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 23997.43,             &quot;prazoMeses&quot;: 43,             &quot;dataNascimento&quot;: &quot;1978-03-02&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 7359.16,             &quot;prazoMeses&quot;: 115,             &quot;dataNascimento&quot;: &quot;1948-02-05&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 5262.82,             &quot;prazoMeses&quot;: 109,             &quot;dataNascimento&quot;: &quot;1987-07-06&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 20123.43,             &quot;prazoMeses&quot;: 72,             &quot;dataNascimento&quot;: &quot;1953-08-23&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 48987.47,             &quot;prazoMeses&quot;: 42,             &quot;dataNascimento&quot;: &quot;2002-02-26&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 13933.68,             &quot;prazoMeses&quot;: 63,             &quot;dataNascimento&quot;: &quot;1940-07-21&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 44764.48,             &quot;prazoMeses&quot;: 34,             &quot;dataNascimento&quot;: &quot;1971-10-06&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 49515.96,             &quot;prazoMeses&quot;: 25,             &quot;dataNascimento&quot;: &quot;1980-03-28&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 45410.53,             &quot;prazoMeses&quot;: 54,             &quot;dataNascimento&quot;: &quot;2008-03-15&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 1261.27,             &quot;prazoMeses&quot;: 94,             &quot;dataNascimento&quot;: &quot;2010-08-30&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 5153.5,             &quot;prazoMeses&quot;: 90,             &quot;dataNascimento&quot;: &quot;1994-01-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 1369.07,             &quot;prazoMeses&quot;: 100,             &quot;dataNascimento&quot;: &quot;1952-11-29&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 9631.55,             &quot;prazoMeses&quot;: 46,             &quot;dataNascimento&quot;: &quot;1978-04-09&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 4185.34,             &quot;prazoMeses&quot;: 99,             &quot;dataNascimento&quot;: &quot;1984-11-06&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 19711.28,             &quot;prazoMeses&quot;: 106,             &quot;dataNascimento&quot;: &quot;1952-05-30&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 15585.44,             &quot;prazoMeses&quot;: 14,             &quot;dataNascimento&quot;: &quot;1945-01-13&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 33254.83,             &quot;prazoMeses&quot;: 16,             &quot;dataNascimento&quot;: &quot;1973-02-24&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 31292.5,             &quot;prazoMeses&quot;: 54,             &quot;dataNascimento&quot;: &quot;1960-07-12&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 30165.39,             &quot;prazoMeses&quot;: 102,             &quot;dataNascimento&quot;: &quot;1975-08-25&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 3490.58,             &quot;prazoMeses&quot;: 93,             &quot;dataNascimento&quot;: &quot;1945-12-21&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 19416.41,             &quot;prazoMeses&quot;: 54,             &quot;dataNascimento&quot;: &quot;1935-08-15&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 4473.36,             &quot;prazoMeses&quot;: 69,             &quot;dataNascimento&quot;: &quot;1941-09-03&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 31757.78,             &quot;prazoMeses&quot;: 57,             &quot;dataNascimento&quot;: &quot;1956-03-12&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 23453.84,             &quot;prazoMeses&quot;: 111,             &quot;dataNascimento&quot;: &quot;1970-08-29&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 7974.51,             &quot;prazoMeses&quot;: 108,             &quot;dataNascimento&quot;: &quot;1966-04-27&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 44960.14,             &quot;prazoMeses&quot;: 60,             &quot;dataNascimento&quot;: &quot;1990-12-19&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 40023.81,             &quot;prazoMeses&quot;: 12,             &quot;dataNascimento&quot;: &quot;1981-06-12&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: false         },         {             &quot;valor&quot;: 10865.71,             &quot;prazoMeses&quot;: 118,             &quot;dataNascimento&quot;: &quot;1966-05-17&quot;,             &quot;modalidade&quot;: &quot;FIXA&quot;,             &quot;registrar&quot;: true         },         {             &quot;valor&quot;: 1523.36,             &quot;prazoMeses&quot;: 21,             &quot;dataNascimento&quot;: &quot;1943-03-15&quot;,             &quot;modalidade&quot;: &quot;VARIAVEL&quot;,             &quot;registrar&quot;: true         }     ] }</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2025-08-19T04:45:01.6208865</stringProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="ano" enabled="true">
+          <stringProp name="maximumValue">2012</stringProp>
+          <stringProp name="minimumValue">1930</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">false</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">ano</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="prazo" enabled="true">
+          <stringProp name="variableName">prazo</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <stringProp name="minimumValue">12</stringProp>
+          <stringProp name="maximumValue">120</stringProp>
+          <stringProp name="randomSeed"></stringProp>
+          <boolProp name="perThread">false</boolProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="valor">
+          <stringProp name="variableName">valor</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <stringProp name="minimumValue">1000.00</stringProp>
+          <stringProp name="maximumValue">15000.99</stringProp>
+          <stringProp name="randomSeed">7</stringProp>
+          <boolProp name="perThread">false</boolProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="canal">
+          <stringProp name="variableName"></stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <stringProp name="minimumValue">1</stringProp>
+          <stringProp name="maximumValue">99999999</stringProp>
+          <stringProp name="randomSeed"></stringProp>
+          <boolProp name="perThread">false</boolProp>
+        </RandomVariableConfig>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

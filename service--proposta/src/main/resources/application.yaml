@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: service--proposta
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/proposta-db
+      database: proposta-db
+server:
+  port: 8081
+  servlet:
+    context-path: /service--proposta
+  tomcat:
+    threads:
+      max: 200           # Máximo de threads simultâneas
+      min-spare: 10      # Threads mínimas ociosas
+    accept-count: 100     # Fila de requisições pendentes
+    max-connections: 100 # Máximo de conexões TCP simultâneas 10000 default
+    max-http-post-size: 1MB # Tamanho máximo do corpo POST 2MB default
+  connection-timeout: 5s   # Tempo máximo de espera por requisição
+
+logging:
+  config: classpath:logback-spring.xml
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    br.com.creditas.service.simulacao.service: DEBUG
+    org.zalando.logbook.Logbook: TRACE
+
+logbook:
+  format:
+    style: json
+  exclude:
+    - /actuator/**
+    - /health
+    -
+simulacao:
+  baseUrl: http://localhost:8080/service--simulacao
+  buscarSimulacao: /v1/simulacoes/{id}

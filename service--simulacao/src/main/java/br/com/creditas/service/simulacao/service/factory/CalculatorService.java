@@ -1,4 +1,4 @@
-package br.com.creditas.service.simulacao.service;
+package br.com.creditas.service.simulacao.service.factory;
 
 import br.com.creditas.service.simulacao.dto.SimulacaoSolicitacao;
 import lombok.extern.slf4j.Slf4j;
